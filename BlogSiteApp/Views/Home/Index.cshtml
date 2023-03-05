@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BlogSiteApp.Models.Blog>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main role="main" class="container blog-posts">
+
+
+    <div class="main-search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search this blog">
+            <div class="input-group-append">
+
+                <button type="button" class="btn btn-dark">Search</button>
+
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="blog-post-card card col-lg-4 col-md-6">
+                <img class="card-img-top" src="~/Content/Images/@Html.Raw(item.image)" alt="Card image cap">
+                <div class="card-body bg-light">
+                    <strong class="d-inline-block mb-2 text-success">Design</strong>
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.title)</h3>
+                    <div class="mb-1 text-muted">@Html.DisplayFor(modelItem => item.date)</div>
+                    <p>@Html.DisplayFor(modelItem => item.summary)</p>
+                    <a href="/Home/Details/@Html.Raw(item.Id)" class="btn btn-warning btn-block">
+                        Read on
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</main>
